@@ -54,7 +54,7 @@ class CreateRawData(Task):
 
     def init(self):
         self.results['builder'] = SchemaBuilder()
-        self.results['builder'].add_schema({"type": "object", "properties": {}})']
+        self.results['builder'].add_schema({"type": "object", "properties": {}})
 
     def run(self, rawMetadata):
         filenames = rawMetadata.pdfJsonFiles.split(';')

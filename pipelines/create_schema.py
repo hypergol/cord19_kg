@@ -1,7 +1,7 @@
 import fire
 from hypergol import HypergolProject
 from hypergol import Pipeline
-from tasks.create_raw_metadata import CreateRawMetaData
+from tasks.create_raw_metadata import CreateRawMetadata
 from tasks.create_raw_data import CreateRawData
 from data_models.raw_metadata import RawMetadata
 from data_models.raw_data import RawData
