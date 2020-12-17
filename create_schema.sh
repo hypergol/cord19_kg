@@ -1,6 +1,6 @@
 export PYTHONPATH="${PWD}/..:${PWD}/../..:"
 
-THREADS=4
+THREADS=30
 
 # Disable multithreading in all numerical packages
 export OMP_NUM_THREADS=1
