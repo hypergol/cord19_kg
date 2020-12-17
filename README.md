@@ -15,6 +15,7 @@ Hypergol commands used to generate code:
 
 ```
 python -m hypergol.cli.create_project Cord19Kg
+python3 -m hypergol.cli.create_task CreateSchema --source
 
 
 ```
