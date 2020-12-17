@@ -22,7 +22,9 @@ python -m hypergol.cli.create_project Cord19Kg
 Download the data from AI2 (check their site above for the latest version):
 
 ```
-https://ai2-semanticscholar-cord-19.s3-us-west-2.amazonaws.com/historical_releases/cord-19_2020-12-13.tar.gz
+wget https://ai2-semanticscholar-cord-19.s3-us-west-2.amazonaws.com/historical_releases/cord-19_2020-12-13.tar.gz
+tar -zxvf cord-19_2020-12-13.tar.gz 
+tar -zxvf document_parses.tar.gz
 ```
 
 This project was generated with the Hypergol framework
