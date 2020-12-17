@@ -25,7 +25,7 @@ class CreateRawMetadata(Task):
             try:
                 if row['pdf_json_files'] != '' and row['pmc_json_files'] != '':
                     yield (row, )
-            except Exception ex:
+            except Exception as ex:
                 print(row)
                 raise ex
 
