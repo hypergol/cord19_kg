@@ -13,7 +13,7 @@ class PSchemaBuilder:
             self.builder.add_schema(schema)
 
     def __reduce_ex__(self, protocol):
-        return self.__class__, (self.to_schema())
+        return self.__class__, (self.to_schema(), )
 
     def add_schema(self, schema):
         self.builder.add_schema(schema)
