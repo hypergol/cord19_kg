@@ -19,6 +19,7 @@ python3 -m hypergol.cli.create_task CreateMetadata --source
 python3 -m hypergol.cli.create_task CreateSchema --source
 python3 -m hypergol.cli.create_pipeline CreateSchemaCommands CreateMetadata CreateSchema
 python -m hypergol.cli.create_data_model RawMetadata cordUid:str sha:str sourceX:str title:str doi:str pmcid:str pubmedId:str license:str abstract:str publishTime:str authors:str journal:str magId:str whoCovidenceId:str arxivId:str pdfJsonFiles:str pmcJsonFiles:str url:str s2Id:str
+python -m hypergol.cli.create_data_model RawData cordUid:str data:str rawMetadata:RawMetadata
 ```
 
 Download the data from AI2 (check their site above for the latest version):
