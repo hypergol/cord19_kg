@@ -39,7 +39,7 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
     pipeline = Pipeline(
         tasks=[
             createRawMetadata,
-            createRawData,
+            # createRawData,
         ]
     )
     pipeline.run(threads=threads)
