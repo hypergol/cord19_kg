@@ -42,7 +42,7 @@ def get_hypergol_commands(name, properties, plurals):
     print(f'python -m hypergol.cli.create_data_model {className}{propertiesString} --force')
     return className
 
-def _dict_to_list(k,v,name):
+def _dict_to_list(k, v, name):
     v[name] = k
     return v
 
@@ -65,7 +65,7 @@ class CreateRawData(Task):
             rawMetadata=rawMetadata
         )
         for filename in filenames:
-            data=json.load(open(f'{self.rawDataLocation}/{fname}','rt'))
+            data=json.load(open(f'{self.rawDataLocation}/{filename}','rt'))
             data['bib_entries']=[_dict_to_list(k,v,'bib_entry_id') for k, v in data['bib_entries'].items()]
             data['ref_entries']=[_dict_to_list(k,v,'ref_entry_id') for k, v in data['ref_entries'].items()]
             rawData.data.append(json.dumps(data))

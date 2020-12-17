@@ -26,8 +26,7 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
     createRawMetadata = CreateRawMetadata(
         rawDataLocation=raw_data_location,
         splits=threads,
-        outputDataset=rawMetadata,
-        debug=True
+        outputDataset=rawMetadata
     )
 
     createRawData = CreateRawData(
@@ -35,6 +34,7 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
         plurals=PLURALS,
         inputDatasets=[rawMetadata],
         outputDataset=rawData,
+        debug=True
     )
 
     pipeline = Pipeline(
