@@ -58,9 +58,7 @@ class CreateRawData(Task):
         self.results['builder'].add_schema({"type": "object", "properties": {}})
 
     def run(self, rawMetadata):
-        filenames = rawMetadata.pdfJsonFiles.split(';')
-        print(rawMetadata.pdfJsonFiles)
-        print(filenames)
+        filenames = [filename.strip() for filename in rawMetadata.pdfJsonFiles.split(';')]
         rawData =  RawData(
             cordUid=rawMetadata.cordUid,
             data=[],
