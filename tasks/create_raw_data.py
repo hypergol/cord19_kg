@@ -60,7 +60,7 @@ class CreateRawData(Task):
         filenames = rawMetadata.pdfJsonFiles.split(';')
         rawData =  RawData(
             cordUid=rawMetadata.cordUid,
-            data=[]
+            data=[],
             rawMetadata=rawMetadata
         )
         for filename in filenames:
