@@ -23,7 +23,7 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
     rawMetadata = project.datasetFactory.get(dataType=RawMetadata, name='raw_metadata')
     rawData = project.datasetFactory.get(dataType=RawData, name='raw_data')
     
-    splits=10
+    splits=20
     createRawMetadata = CreateRawMetadata(
         rawDataLocation=raw_data_location,
         splits=splits,
