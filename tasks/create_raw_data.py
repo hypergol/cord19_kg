@@ -59,6 +59,8 @@ class CreateRawData(Task):
 
     def run(self, rawMetadata):
         filenames = rawMetadata.pdfJsonFiles.split(';')
+        print(rawMetadata.pdfJsonFiles)
+        print(filenames)
         rawData =  RawData(
             cordUid=rawMetadata.cordUid,
             data=[],
