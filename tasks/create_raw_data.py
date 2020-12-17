@@ -5,6 +5,25 @@ from hypergol.name_string import NameString
 from data_models.raw_metadata import RawMetadata
 from data_models.raw_data import RawData
 
+class PSchemaBuilder:
+
+    def __init__(self, schema=None):
+        self.builder = SchemaBuilder()
+        if schema is not None:
+            self.builder.add_schema(schema)
+
+    def __reduce_ex__(self, protocol):
+        return self.__class__, (self.to_schema())
+
+    def add_schema(self, schema):
+        self.builder.add_schema(schema)
+
+    def add_object(self, data):
+        self.builder.add_object(data)
+
+    def to_schema(self):
+        return self.builder.to_schema()
+
 
 def get_hypergol_commands(name, properties, plurals):
     def get_class_name(name):
@@ -54,7 +73,7 @@ class CreateRawData(Task):
         self.plurals = plurals
 
     def init(self):
-        self.results['builder'] = SchemaBuilder()
+        self.results['builder'] = PSchemaBuilder()
         self.results['builder'].add_schema({"type": "object", "properties": {}})
 
     def run(self, rawMetadata):
