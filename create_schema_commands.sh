@@ -8,7 +8,11 @@ export MKL_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
+
 python3 \
     ./pipelines/create_schema_commands.py \
     --threads=${THREADS} \
-    $1
+    --data_location=$1 \
+    $2
+
+

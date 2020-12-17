@@ -1,14 +1,19 @@
 import fire
 from hypergol import HypergolProject
 from hypergol import Pipeline
+from tasks.create_metadata import CreateMetadata
 from tasks.create_schema import CreateSchema
 
 
-def create_schema_commands(threads=1, force=False):
+def create_schema_commands(data_location, threads=1, force=False):
     project = HypergolProject(dataDirectory='.', force=force)
+
+    createSchema = CreateMetadata(
+        outputDataset=None,
+    )
+
     createSchema = CreateSchema(
-        inputDatasets=[exampleInputDataset1,  exampleInputDataset2],
-        outputDataset=exampleOutputDataset,
+        outputDataset=None,
     )
 
     pipeline = Pipeline(
