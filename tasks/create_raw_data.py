@@ -92,6 +92,9 @@ class CreateRawData(Task):
         self.output.append(rawData)
 
     def finish(self, jobReports, threads):
+        builder = PSchemaBuilder()
+        for jobReport in jobReports:
+            builder.add_schema(jobReport.results['builder'])
         get_hypergol_commands(
             name='article',
             properties=builder.to_schema()['properties'],
