@@ -1,3 +1,4 @@
+import json
 from genson import SchemaBuilder
 from hypergol import Task
 from hypergol.name_string import NameString
