@@ -18,7 +18,7 @@ class CreateRawMetadata(Task):
         ) for split in range(self.splits)]
 
     def source_iterator(self, parameters):
-        metadata=pd.read_csv(f'{self.rawDataLocation}/metadata.csv').fillna(0)
+        metadata=pd.read_csv(f'{self.rawDataLocation}/metadata.csv')[:1000].fillna(0)
         split = parameters['split']
         for row in islice(metadata.itertuples(index=False), split, None, self.splits):
             if row.pdf_json_files != 0 and rawMetadata.pmc_json_files != 0:
