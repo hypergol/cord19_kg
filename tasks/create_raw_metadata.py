@@ -2,10 +2,10 @@ from hypergol import Job
 from hypergol import Task
 
 
-class CreateSchema(Task):
+class CreateRawMetadata(Task):
 
     def __init__(self, exampleParameter, *args, **kwargs):
-        super(CreateSchema, self).__init__(*args, **kwargs)
+        super(CreateRawMetadata, self).__init__(*args, **kwargs)
         # TODO: all member variables must be pickle-able, otherwise use the "Delayed" methodology
         # TODO: (e.g. for a DB connection), see the documentation <add link here>
         self.exampleParameter = exampleParameter
