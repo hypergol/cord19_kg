@@ -22,8 +22,13 @@ class CreateRawMetadata(Task):
     def source_iterator(self, parameters):
         csvReader = csv.DictReader(f'{self.rawDataLocation}/metadata.csv')
         for row in islice(csvReader, parameters['split'], 1000, self.splits):
-            if row['pdf_json_files'] != '' and rawMetadata['pmc_json_files'] != '':
-                yield (row, )
+            try:
+                if row['pdf_json_files'] != '' and row['pmc_json_files'] != '':
+                    yield (row, )
+            except Exception ex:
+                print(row)
+                raise ex
+
 
     def run(self, row):
         self.output.append(
