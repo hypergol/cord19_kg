@@ -27,24 +27,24 @@ class CreateRawMetadata(Task):
     def run(self, row):
         self.output.append(
             RawMetadata(
-                self.cordUid=row.cord_uid
-                self.sha=row.sha
-                self.sourceX=row.source_x
-                self.title=row.title
-                self.doi=row.doi
-                self.pmcid=row.pmcid
-                self.pubmedId=row.pubmed_id
-                self.license=row.license
-                self.abstract=row.abstract
-                self.publishTime=row.publish_time
-                self.authors=row.authors
-                self.journal=row.journal
-                self.magId=row.mag_id
-                self.whoCovidenceId=row.who_covidence_id
-                self.arxivId=row.arxiv_id
-                self.pdfJsonFiles=row.pdf_json_files
-                self.pmcJsonFiles=row.pmc_json_files
-                self.url=row.url
-                self.s2Id=row.s2_id
+                cordUid=row.cord_uid,
+                sha=row.sha,
+                sourceX=row.source_x,
+                title=row.title,
+                doi=row.doi,
+                pmcid=row.pmcid,
+                pubmedId=row.pubmed_id,
+                license=row.license,
+                abstract=row.abstract,
+                publishTime=row.publish_time,
+                authors=row.authors,
+                journal=row.journal,
+                magId=row.mag_id,
+                whoCovidenceId=row.who_covidence_id,
+                arxivId=row.arxiv_id,
+                pdfJsonFiles=row.pdf_json_files,
+                pmcJsonFiles=row.pmc_json_files,
+                url=row.url,
+                s2Id=row.s2_id,
             )
         )
