@@ -23,6 +23,31 @@ python3 -m hypergol.cli.create_task CreateRawData RawMetadata RawData
 python3 -m hypergol.cli.create_pipeline CreateSchema CreateMetadata CreateSchema RawMetadata RawData
 ```
 
+Generated datamodel (from the JSONs with Genson):
+
+```
+python -m hypergol.cli.create_data_model Location postCode:string settlement:string region:string country:string addrLine:string postBox:string --force
+python -m hypergol.cli.create_data_model Affiliation laboratory:string institution:string location:Location --force
+python -m hypergol.cli.create_data_model Author first:string "middle:List[string]" last:string suffix:string affiliation:Affiliation email:string --force
+python -m hypergol.cli.create_data_model Metadata title:string "authors:List[Author]" --force
+python -m hypergol.cli.create_data_model CiteSpan start:integer end:integer text:string "ref_id:List[string]" --force
+python -m hypergol.cli.create_data_model RefSpan start:integer end:integer text:string ref_id:null --force
+python -m hypergol.cli.create_data_model Abstract text:string "cite_spans:List[CiteSpan]" "ref_spans:List[RefSpan]" section:string --force
+python -m hypergol.cli.create_data_model CiteSpan start:integer end:integer text:string "ref_id:List[string]" --force
+python -m hypergol.cli.create_data_model RefSpan start:integer end:integer text:string "ref_id:List[string]" --force
+python -m hypergol.cli.create_data_model BodyText text:string "cite_spans:List[CiteSpan]" "ref_spans:List[RefSpan]" section:string --force
+python -m hypergol.cli.create_data_model Author first:string "middle:List[string]" last:string suffix:string --force
+python -m hypergol.cli.create_data_model OtherId "DOI:List[string]" "arXiv:List[string]" "PMID:List[string]" "PMCID:List[string]" --force
+python -m hypergol.cli.create_data_model BibEntry ref_id:string title:string "authors:List[Author]" "year:List[integer]" venue:string volume:string issn:string pages:string other_ids:OtherId bib_entry_id:string --force
+python -m hypergol.cli.create_data_model RefEntry text:string latex:null type:string ref_entry_id:string html:string --force
+python -m hypergol.cli.create_data_model CiteSpan start:integer end:integer text:string "ref_id:List[string]" --force
+python -m hypergol.cli.create_data_model RefSpan start:integer end:integer text:string ref_id:null --force
+python -m hypergol.cli.create_data_model BackMatter text:string "cite_spans:List[CiteSpan]" "ref_spans:List[RefSpan]" section:string --force
+python -m hypergol.cli.create_data_model Article paper_id:string metadata:Metadata "abstract:List[Abstract]" "body_text:List[BodyText]" "bib_entries:List[BibEntry]" "ref_entries:List[RefEntry]" "back_matter:List[BackMatter]" --force
+```
+
+
+
 Download the data from AI2 (check their site above for the latest version):
 
 ```
