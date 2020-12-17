@@ -27,7 +27,8 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
         rawDataLocation=raw_data_location,
         splits=threads,
         outputDataset=rawMetadata,
-        debug=True
+        debug=True,
+        threads=10
     )
 
     createRawData = CreateRawData(
