@@ -32,6 +32,7 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
     createRawData = CreateRawData(
         rawDataLocation=raw_data_location,
         plurals=PLURALS,
+        inputDatasets=[rawMetadata],
         outputDataset=rawData,
     )
 
