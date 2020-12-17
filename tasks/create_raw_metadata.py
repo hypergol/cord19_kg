@@ -1,4 +1,5 @@
 import csv
+from itertools import islice
 from hypergol import Job
 from hypergol import Task
 from data_models.raw_metadata import RawMetadata
