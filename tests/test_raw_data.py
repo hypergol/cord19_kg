@@ -10,7 +10,7 @@ class TestRawData(TestCase):
 
     def __init__(self, methodName):
         super(TestRawData, self).__init__(methodName=methodName)
-        self.rawData = RawData(cordUid='', data='', rawMetadata=None)
+        self.rawData = RawData(cordUid='', data=['', ''], rawMetadata=None)
 
     def setUp(self):
         super().setUp()

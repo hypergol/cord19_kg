@@ -10,7 +10,7 @@ class TestRawMetadata(TestCase):
 
     def __init__(self, methodName):
         super(TestRawMetadata, self).__init__(methodName=methodName)
-        self.rawMetadata = RawMetadata(cordUid='', sha='', sourceX='', title='', doi='', pmcid='', pubmedId='', license='', abstract='', publishTime='', authors='', journal='', magId='', whoCovidenceId='', arxivId='', pdfJsonFiles='', pmcJsonFiles='', url='', s2Id='')
+        self.rawMetadata = RawMetadata(cordUid='', sha='', sourceX=['', ''], title='', doi='', pmcid='', pubmedId='', license='', abstract='', publishTime='', authors='', journal='', magId='', whoCovidenceId='', arxivId='', pdfJsonFiles='', pmcJsonFiles='', url='', s2Id='')
 
     def setUp(self):
         super().setUp()

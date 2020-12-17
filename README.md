@@ -15,8 +15,8 @@ Hypergol commands used to generate code:
 
 ```
 python -m hypergol.cli.create_project Cord19Kg
-python -m hypergol.cli.create_data_model RawMetadata cordUid:str sha:str sourceX:str title:str doi:str pmcid:str pubmedId:str license:str abstract:str publishTime:str authors:str journal:str magId:str whoCovidenceId:str arxivId:str pdfJsonFiles:str pmcJsonFiles:str url:str s2Id:str
-python -m hypergol.cli.create_data_model RawData cordUid:str data:str rawMetadata:RawMetadata
+python -m hypergol.cli.create_data_model RawMetadata cordUid:str:id sha:str sourceX:List[str] title:str doi:str pmcid:str pubmedId:str license:str abstract:str publishTime:str authors:str journal:str magId:str whoCovidenceId:str arxivId:str pdfJsonFiles:str pmcJsonFiles:str url:str s2Id:str
+python -m hypergol.cli.create_data_model RawData cordUid:str:id "data:List[str]" rawMetadata:RawMetadata
 
 python3 -m hypergol.cli.create_task CreateRawMetadata --source
 python3 -m hypergol.cli.create_task CreateRawData RawMetadata RawData

@@ -7,17 +7,32 @@ from data_models.raw_metadata import RawMetadata
 from data_models.raw_data import RawData
 
 
+PLURALS = {
+    'authors': 'author',
+    'cite_spans': 'cite_span',
+    'ref_spans': 'ref_span',
+    'bib_entries': 'bib_entry',
+    'other_ids': 'other_id',
+    'ref_entries': 'ref_entry'
+}
+
+
 def create_schema(data_directory, raw_data_location, threads=1, force=False):
     project = HypergolProject(dataDirectory=data_directory, force=force)
-    rawMetadatas = project.datasetFactory.get(dataType=RawMetadata, name='raw_metadatas')
-    rawDatas = project.datasetFactory.get(dataType=RawData, name='raw_datas')
+
+    rawMetadata = project.datasetFactory.get(dataType=RawMetadata, name='raw_metadata')
+    rawData = project.datasetFactory.get(dataType=RawData, name='raw_data')
+    
     createMetadata = CreateMetadata(
-        inputDatasets=[exampleInputDataset1,  exampleInputDataset2],
-        outputDataset=exampleOutputDataset,
+        rawDataLocation=raw_data_location,
+        splits=threads,
+        outputDataset=rawMetadata,
     )
+
     createSchema = CreateSchema(
-        inputDatasets=[exampleInputDataset1,  exampleInputDataset2],
-        outputDataset=exampleOutputDataset,
+        rawDataLocation=raw_data_location,
+        plurals=PLURALS,
+        outputDataset=rawData,
     )
 
     pipeline = Pipeline(

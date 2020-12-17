@@ -1,32 +1,50 @@
 from hypergol import Job
 from hypergol import Task
+from data_models.raw_metadata import RawMetadata
 
 
 class CreateRawMetadata(Task):
 
-    def __init__(self, exampleParameter, *args, **kwargs):
+    def __init__(self, rawDataLocation, splits, *args, **kwargs):
         super(CreateRawMetadata, self).__init__(*args, **kwargs)
-        # TODO: all member variables must be pickle-able, otherwise use the "Delayed" methodology
-        # TODO: (e.g. for a DB connection), see the documentation <add link here>
-        self.exampleParameter = exampleParameter
-
-    def init(self):
-        # TODO: initialise members that are NOT "Delayed" here (e.g. load spacy model)
-        pass
+        self.rawDataLocation = rawDataLocation
+        self.splits = splits
 
     def get_jobs(self):
-        raise NotImplementedError(f'{self.__class__.__name__} must implement get_jobs()')
-        # TODO: Return a list of Job classes here that will be passed on to the source_iterator
-        return [Job(id_=k, total= ..., parameters={...}) for k, ... in enumerate(...)]
+        return [Job(
+            id_=split, 
+            total=self.splits,
+            parameters={'split': split}
+        ) for split in range(self.splits)]
 
     def source_iterator(self, parameters):
-        raise NotImplementedError(f'{self.__class__.__name__} must implement source_iterator()')
-        # TODO: use the parameters (from Job) to open
-        # TODO: use yield in this function instead of return while you are consuming your source data
-        # TODO: return type must be list or tuple as the * operator will be used on it
-        yield (exampleData, )
+        metadata=pd.read_csv(f'{self.rawDataLocation}/metadata.csv').fillna(0)
+        split = parameters['split']
+        for row in islice(metadata.itertuples(index=False), split, None, self.splits):
+            if row.pdf_json_files != 0 and rawMetadata.pmc_json_files != 0:
+                yield (row, )
 
-    def run(self, exampleData):
-        raise NotImplementedError(f'{self.__class__.__name__} must implement run()')
-        # TODO: Use the exampleData from source_iterator to construct a domain object
-        self.output.append(exampleOutputObject)
+    def run(self, row):
+        self.output.append(
+            RawMetadata(
+                self.cordUid=row.cord_uid
+                self.sha=row.sha
+                self.sourceX=row.source_x
+                self.title=row.title
+                self.doi=row.doi
+                self.pmcid=row.pmcid
+                self.pubmedId=row.pubmed_id
+                self.license=row.license
+                self.abstract=row.abstract
+                self.publishTime=row.publish_time
+                self.authors=row.authors
+                self.journal=row.journal
+                self.magId=row.mag_id
+                self.whoCovidenceId=row.who_covidence_id
+                self.arxivId=row.arxiv_id
+                self.pdfJsonFiles=row.pdf_json_files
+                self.pmcJsonFiles=row.pmc_json_files
+                self.url=row.url
+                self.s2Id=row.s2_id
+            )
+        )

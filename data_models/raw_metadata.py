@@ -1,9 +1,11 @@
+from typing import List
+
 from hypergol import BaseData
 
 
 class RawMetadata(BaseData):
 
-    def __init__(self, cordUid: str, sha: str, sourceX: str, title: str, doi: str, pmcid: str, pubmedId: str, license: str, abstract: str, publishTime: str, authors: str, journal: str, magId: str, whoCovidenceId: str, arxivId: str, pdfJsonFiles: str, pmcJsonFiles: str, url: str, s2Id: str):
+    def __init__(self, cordUid: str, sha: str, sourceX: List[str], title: str, doi: str, pmcid: str, pubmedId: str, license: str, abstract: str, publishTime: str, authors: str, journal: str, magId: str, whoCovidenceId: str, arxivId: str, pdfJsonFiles: str, pmcJsonFiles: str, url: str, s2Id: str):
         self.cordUid = cordUid
         self.sha = sha
         self.sourceX = sourceX
@@ -23,3 +25,6 @@ class RawMetadata(BaseData):
         self.pmcJsonFiles = pmcJsonFiles
         self.url = url
         self.s2Id = s2Id
+
+    def get_id(self):
+        return (self.cordUid, )
