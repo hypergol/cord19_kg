@@ -1,3 +1,4 @@
+import csv
 from hypergol import Job
 from hypergol import Task
 from data_models.raw_metadata import RawMetadata
@@ -18,33 +19,32 @@ class CreateRawMetadata(Task):
         ) for split in range(self.splits)]
 
     def source_iterator(self, parameters):
-        metadata=pd.read_csv(f'{self.rawDataLocation}/metadata.csv')[:1000].fillna(0)
-        split = parameters['split']
-        for row in islice(metadata.itertuples(index=False), split, None, self.splits):
+        csvReader = csv.DictReader(f'{self.rawDataLocation}/metadata.csv')[:1000].fillna(0)
+        for row in islice(csvReader, parameters['split'], 1000, self.splits):
             if row.pdf_json_files != 0 and rawMetadata.pmc_json_files != 0:
                 yield (row, )
 
     def run(self, row):
         self.output.append(
             RawMetadata(
-                cordUid=row.cord_uid,
-                sha=row.sha,
-                sourceX=row.source_x,
-                title=row.title,
-                doi=row.doi,
-                pmcid=row.pmcid,
-                pubmedId=row.pubmed_id,
-                license=row.license,
-                abstract=row.abstract,
-                publishTime=row.publish_time,
-                authors=row.authors,
-                journal=row.journal,
-                magId=row.mag_id,
-                whoCovidenceId=row.who_covidence_id,
-                arxivId=row.arxiv_id,
-                pdfJsonFiles=row.pdf_json_files,
-                pmcJsonFiles=row.pmc_json_files,
-                url=row.url,
-                s2Id=row.s2_id,
+                cordUid=row['cord_uid'],
+                sha=row['sha'],
+                sourceX=row['source_x'],
+                title=row['title'],
+                doi=row['doi'],
+                pmcid=row['pmcid'],
+                pubmedId=row['pubmed_id'],
+                license=row['license'],
+                abstract=row['abstract'],
+                publishTime=row['publish_time'],
+                authors=row['authors'],
+                journal=row['journal'],
+                magId=row['mag_id'],
+                whoCovidenceId=row['who_covidence_id'],
+                arxivId=row['arxiv_id'],
+                pdfJsonFiles=row['pdf_json_files'],
+                pmcJsonFiles=row['pmc_json_files'],
+                url=row['url'],
+                s2Id=row['s2_id'],
             )
         )
