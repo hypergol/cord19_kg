@@ -1,5 +1,30 @@
 # Cord19Kg
 
+The goal of this project is to create a knowledge graph of medical entities and phrases and create an embedding for it with node2vec using gensim's word2vec/corpus_file facility. I will heavily use [Sujit Pal](https://github.com/sujitpal)'s previous work.
+
+Information on the data 
+
+-   [https://github.com/allenai/cord19](https://github.com/allenai/cord19)
+-   [https://ai2-semanticscholar-cord-19.s3-us-west-2.amazonaws.com/historical_releases.html](https://ai2-semanticscholar-cord-19.s3-us-west-2.amazonaws.com/historical_releases.html)
+-   [https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge/discussion/137474](https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge/discussion/137474)
+-   [https://github.com/sujitpal/saturn-scispacy/tree/master/notebooks/full](https://github.com/sujitpal/saturn-scispacy/tree/master/notebooks/full)
+-   [https://registry.opendata.aws/cord-19/](https://registry.opendata.aws/cord-19/)
+-   [https://github.com/allenai/cord19](https://github.com/allenai/cord19)
+
+Hypergol commands used to generate code:
+
+```
+python -m hypergol.cli.create_project Cord19Kg
+
+
+```
+
+Download the data from AI2 (check their site above for the latest version):
+
+```
+https://ai2-semanticscholar-cord-19.s3-us-west-2.amazonaws.com/historical_releases/cord-19_2020-12-13.tar.gz
+```
+
 This project was generated with the Hypergol framework
 
 Please see documentation for instructions: [https://hypergol.readthedocs.io/en/latest/](https://hypergol.readthedocs.io/en/latest/)
