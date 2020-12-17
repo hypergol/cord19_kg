@@ -20,7 +20,7 @@ class CreateRawMetadata(Task):
         ) for split in range(self.splits)]
 
     def source_iterator(self, parameters):
-        self.log(f'{parameters['split']} - {self.splits}')
+        self.log(f"{parameters['split']} - {self.splits}")
         csvReader = csv.DictReader(open(f'{self.rawDataLocation}/metadata.csv','rt'))
         for row in islice(csvReader, parameters['split'], 1000, self.splits):
             print('here')
