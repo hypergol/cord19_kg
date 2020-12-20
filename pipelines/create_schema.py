@@ -24,8 +24,8 @@ PLURALS = {
 def create_schema(data_directory, raw_data_location, threads=1, force=False):
     project = HypergolProject(dataDirectory=data_directory, force=force)
 
-    rawMetadata = project.datasetFactory.get(dataType=RawMetadata, name='raw_metadata', chunkCount=256)
-    rawData = project.datasetFactory.get(dataType=RawData, name='raw_data', chunkCount=256)
+    rawMetadata = project.datasetFactory.get(dataType=RawMetadata, branch='master', name='raw_metadata', chunkCount=256)
+    rawData = project.datasetFactory.get(dataType=RawData, branch='master', name='raw_data', chunkCount=256)
     duplicatedArticles = project.datasetFactory.get(dataType=Article, name='duplicatedArticles', chunkCount=256)
     paragraphs = project.datasetFactory.get(dataType=Paragraph, name='paragraphs', chunkCount=256)
     
