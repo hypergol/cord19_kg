@@ -1,3 +1,4 @@
+import json
 from hypergol import Task
 from hypergol.utils import get_hash
 from data_models.span import Span
