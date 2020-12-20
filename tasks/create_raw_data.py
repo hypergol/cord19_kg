@@ -34,6 +34,7 @@ def get_hypergol_commands(name, properties, plurals):
     className = get_class_name(name)
     propertiesString = ''
     for propertyName, propertySchema in properties.items():
+        propertySchema = propertySchema.replace('string', 'str').replace('integer', 'int')
         if propertySchema['type'] == 'object':
             propertyClassName = get_hypergol_commands(
                 name=propertyName,
