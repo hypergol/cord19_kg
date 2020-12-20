@@ -1,5 +1,5 @@
 from typing import List
-
+from hypergol.utils import get_hash
 from hypergol import BaseData
 
 
@@ -19,3 +19,9 @@ class Article(BaseData):
 
     def get_id(self):
         return (self.articleId, )
+
+    @classmethod
+    def get_title_hash(cls, title):
+        pass
+
+    

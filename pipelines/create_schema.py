@@ -5,10 +5,12 @@ from tasks.create_raw_metadata import CreateRawMetadata
 from tasks.create_raw_data import CreateRawData
 from tasks.create_duplicated_articles import CreateDuplicatedArticles
 from tasks.create_paragraphs import CreateParagraphs
+from tasks.collect_bib_entries import CollectBibEntries
 from data_models.raw_metadata import RawMetadata
 from data_models.raw_data import RawData
 from data_models.article import Article
 from data_models.paragraph import Paragraph
+from data_models.bib_entry import BibEntry
 
 
 PLURALS = {
@@ -26,8 +28,9 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
 
     rawMetadata = project.datasetFactory.get(dataType=RawMetadata, branch='master', name='raw_metadata', chunkCount=256)
     rawData = project.datasetFactory.get(dataType=RawData, branch='master', name='raw_data', chunkCount=256)
-    duplicatedArticles = project.datasetFactory.get(dataType=Article, name='duplicatedArticles', chunkCount=256)
+    duplicatedArticles = project.datasetFactory.get(dataType=Article, name='duplicated_articles', chunkCount=256)
     paragraphs = project.datasetFactory.get(dataType=Paragraph, name='paragraphs', chunkCount=256)
+    bibEntries = project.datasetFactory.get(dataType=BibEntry, name='bib_entries', chunkCount=256)
     
     createRawMetadata = CreateRawMetadata(
         rawDataLocation=raw_data_location,
@@ -53,11 +56,19 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
         outputDataset=paragraphs
     )
 
+    collectBibEntries = CollectBibEntries(
+        inputDatasets=[rawData],
+        outputDataset=bibEntries
+    )
+
+    tasks/collect_bib_entries.py
+
     pipeline = Pipeline(
         tasks=[
             # createRawMetadata,
             # createRawData,
-            createDuplicatedArticles,
+            collectBibEntries,
+            # createDuplicatedArticles,
             # createParagraphs
         ]
     )

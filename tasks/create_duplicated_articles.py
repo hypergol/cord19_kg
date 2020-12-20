@@ -1,6 +1,5 @@
 import json
 from hypergol import Task
-from hypergol.utils import get_hash
 from data_models.raw_metadata import RawMetadata
 from data_models.raw_data import RawData
 from data_models.article import Article
@@ -26,7 +25,7 @@ class CreateDuplicatedArticles(Task):
 
         metadata = rawData.rawMetadata
         mainArticle = Article(
-            articleId=get_hash(metadata.title),
+            articleId=Article.get_title_hash(metadata.title),
             cordUid=rawData.cordUid,
             paperIds=[],
             title=metadata.title,
@@ -40,7 +39,7 @@ class CreateDuplicatedArticles(Task):
         for data in rawData.data:
             data = json.loads(data)
             mainArticle.paperIds.append(data['paper_id'])
-            if data['metadata']['title'] != mainArticle.title:
+            if data['metadata']['title'] != mainArticle.articleId:
                 print('title mismatch')
                 print(data['metadata']['title'])
                 print(mainArticle.title)
@@ -48,7 +47,7 @@ class CreateDuplicatedArticles(Task):
                 mainArticle.authors.append(get_name(author))
             for bibEntry in data['bib_entries']:
                 self.output.append(Article(
-                    articleId=get_hash(bibEntry['title']),
+                    articleId=Article.get_title_hash(bibEntry['title']),
                     cordUid='',
                     paperIds=[],
                     title=bibEntry['title'],

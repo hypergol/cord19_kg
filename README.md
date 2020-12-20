@@ -56,6 +56,10 @@ python -m hypergol.cli.create_data_model Document documentId:int:id "tokens:List
 
 python3 -m hypergol.cli.create_task CreateArticles RawMetadata RawData Article --force
 python3 -m hypergol.cli.create_task CreateParagraphs RawMetadata RawData Paragraph --force
+python3 -m hypergol.cli.create_task CollectBibEntries RawMetadata RawData BibEntry --force
+
+python -m hypergol.cli.create_data_model BibEntry refId:str title:str "authors:List[Author]" "year:List[int]" venue:str volume:str issn:str pages:str "DOI:List[str]" "arXiv:List[str]" "PMID:List[str]" "PMCID:List[str]" bibEntryId:str --force
+
 ```
 
 
