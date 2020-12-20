@@ -18,7 +18,7 @@ class CreateDuplicatedArticles(Task):
 
         def get_name(author):
             nameParts = [author['first']] + author['middle'] + [author['last']]
-            return ' '.join(nameParts))
+            return ' '.join(nameParts)
 
         def get_other_id(bibEntry, name):
             return bibEntry['other_ids'].get(name, None) or []
@@ -27,7 +27,7 @@ class CreateDuplicatedArticles(Task):
         mainArticle = Article(
             articleId=get_hash(metadata.title),
             cordUid=rawData.cordUid,
-            paperIds=[]
+            paperIds=[],
             title=metadata.title,
             authors=[author.strip() for author in rawData.rawMetadata.authors.split(';')],
             journal=rawData.rawMetadata.journal,
