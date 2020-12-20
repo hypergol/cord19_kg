@@ -44,7 +44,8 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
 
     createDuplicatedArticles = CreateDuplicatedArticles(
         inputDatasets=[rawData],
-        outputDataset=duplicatedArticles
+        outputDataset=duplicatedArticles,
+        debug=True
     )
 
     createParagraphs = CreateParagraphs(
