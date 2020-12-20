@@ -20,8 +20,8 @@ class CreateDuplicatedArticles(Task):
             nameParts = [author['first']] + author['middle'] + [author['last']]
             return ' '.join(nameParts))
 
-        def get_other_id(rawMetaData, name):
-            return rawMetaData['other_ids'].get(name, None) or []
+        def get_other_id(bibEntry, name):
+            return bibEntry['other_ids'].get(name, None) or []
 
         metadata = rawData.rawMetadata
         mainArticle = Article(
@@ -39,7 +39,7 @@ class CreateDuplicatedArticles(Task):
         )
         for data in rawData.data:
             data = json.loads(data)
-            mainArticle.paperIds.append(data.paper_id)
+            mainArticle.paperIds.append(data['paper_id'])
             if data['metadata']['title'] != mainArticle.title:
                 print('title mismatch')
                 print(data['metadata']['title'])
@@ -54,10 +54,10 @@ class CreateDuplicatedArticles(Task):
                     title=bibEntry['title'],
                     authors=[get_name(author) for bibEntry['authors']],
                     journal=rawData.rawMetadata.journal,
-                    DOI=get_other_id(rawData.rawMetadata, 'DOI'),
-                    arXiv=get_other_id(rawData.rawMetadata, 'arXiv'),
-                    PMID=get_other_id(rawData.rawMetadata, 'PMID'),
-                    PMCID=get_other_id(rawData.rawMetadata, 'PMCID'),
+                    DOI=get_other_id(bibEntry, 'DOI'),
+                    arXiv=get_other_id(bibEntry, 'arXiv'),
+                    PMID=get_other_id(bibEntry, 'PMID'),
+                    PMCID=get_other_id(bibEntry, 'PMCID'),
                     year=_optional(bibEntry['year'])
                 ))
         self.output.append(mainArticle)

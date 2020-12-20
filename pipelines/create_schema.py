@@ -47,16 +47,17 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
         outputDataset=duplicatedArticles
     )
 
-    createArticles = CreateArticles(
+    createParagraphs = CreateParagraphs(
         inputDatasets=[rawData],
-        outputDataset=duplicatedArticles
+        outputDataset=paragraphs
     )
 
     pipeline = Pipeline(
         tasks=[
             # createRawMetadata,
             # createRawData,
-            createArticles
+            createArticles,
+            # createParagraphs
         ]
     )
     pipeline.run(threads=threads)

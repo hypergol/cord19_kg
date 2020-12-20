@@ -48,6 +48,7 @@ x python -m hypergol.cli.create_data_model Article paperId:str metadata:Metadata
 Actual datamodel 
 
 ```
+python -m hypergol.cli.create_data_model Span start:int end:int value:str --force
 python -m hypergol.cli.create_data_model Article articleId:str:id paperId:str title:str "authors:List[str]" "DOI:List[str]" "arXiv:List[str]" "PMID:List[str]" "PMCID:List[str]" "year:List[int]" --force
 python -m hypergol.cli.create_data_model Paragraph articleId:str:id paragraphId:int:id text:str citations:List[str] --force
 python -m hypergol.cli.create_data_model ArticleText articleId:str:id article:Article "paragraphs:List[Paragraph]" --force
