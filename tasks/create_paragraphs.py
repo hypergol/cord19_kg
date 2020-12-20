@@ -8,7 +8,7 @@ from data_models.paragraph import Paragraph
 
 class CreateParagraphs(Task):
 
-    def __init__(self, exampleParameter, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(CreateParagraphs, self).__init__(*args, **kwargs)
 
     def run(self, rawData):

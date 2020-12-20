@@ -7,7 +7,7 @@ from data_models.article import Article
 
 class CreateDuplicatedArticles(Task):
 
-    def __init__(self, exampleParameter, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(CreateDuplicatedArticles, self).__init__(*args, **kwargs)
 
     def run(self, rawData):
