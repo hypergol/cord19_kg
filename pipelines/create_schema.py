@@ -3,8 +3,10 @@ from hypergol import HypergolProject
 from hypergol import Pipeline
 from tasks.create_raw_metadata import CreateRawMetadata
 from tasks.create_raw_data import CreateRawData
+from tasks.create_articles import CreateArticles
 from data_models.raw_metadata import RawMetadata
 from data_models.raw_data import RawData
+from data_models.article import Article
 
 
 PLURALS = {
@@ -22,6 +24,7 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
 
     rawMetadata = project.datasetFactory.get(dataType=RawMetadata, name='raw_metadata', chunkCount=256)
     rawData = project.datasetFactory.get(dataType=RawData, name='raw_data', chunkCount=256)
+    articles = project.datasetFactory.get(dataType=Article, name='articles', chunkCount=256)
     
     createRawMetadata = CreateRawMetadata(
         rawDataLocation=raw_data_location,
@@ -37,10 +40,17 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
         debug=True
     )
 
+    createArticles = CreateArticles(
+        inputDatasets=[rawData],
+        outputDataset=Articles,
+        debug=True
+    )
+
     pipeline = Pipeline(
         tasks=[
-            createRawMetadata,
-            createRawData,
+            # createRawMetadata,
+            # createRawData,
+            createArticles
         ]
     )
     pipeline.run(threads=threads)
