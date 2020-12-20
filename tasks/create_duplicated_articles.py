@@ -23,23 +23,6 @@ class CreateDuplicatedArticles(Task):
         def get_other_id(bibEntry, name):
             return bibEntry['other_ids'].get(name, None) or []
 
-       
-        self.pmcid = pmcid
-        self.pubmedId = pubmedId
-        self.license = license
-        self.abstract = abstract
-        self.publishTime = publishTime
-        self.authors = authors
-        self.journal = journal
-        self.magId = magId
-        self.whoCovidenceId = whoCovidenceId
-        self.arxivId = arxivId
-        self.pdfJsonFiles = pdfJsonFiles
-        self.pmcJsonFiles = pmcJsonFiles
-        self.url = url
-        self.s2Id = s2Id
-
-
         metadata = rawData.rawMetadata
         mainArticle = Article(
             articleId=get_hash(metadata.title),
