@@ -23,18 +23,34 @@ class CreateDuplicatedArticles(Task):
         def get_other_id(bibEntry, name):
             return bibEntry['other_ids'].get(name, None) or []
 
+       
+        self.pmcid = pmcid
+        self.pubmedId = pubmedId
+        self.license = license
+        self.abstract = abstract
+        self.publishTime = publishTime
+        self.authors = authors
+        self.journal = journal
+        self.magId = magId
+        self.whoCovidenceId = whoCovidenceId
+        self.arxivId = arxivId
+        self.pdfJsonFiles = pdfJsonFiles
+        self.pmcJsonFiles = pmcJsonFiles
+        self.url = url
+        self.s2Id = s2Id
+
+
         metadata = rawData.rawMetadata
         mainArticle = Article(
             articleId=get_hash(metadata.title),
             cordUid=rawData.cordUid,
             paperIds=[],
             title=metadata.title,
-            authors=[author.strip() for author in rawData.rawMetadata.authors.split(';')],
+            authors=[author.strip() for author in metadata.authors.split(';')],
             journal=rawData.rawMetadata.journal,
-            DOI=_optional(rawData.rawMetadata.DOI),
-            arXiv=_optional(rawData.rawMetadata.arXiv),
-            PMID=_optional(rawData.rawMetadata.PMID),
-            PMCID=_optional(rawData.rawMetadata.PMCID),
+            doi=_optional(metadata.doi),
+            arxivId=_optional(rawData.rawMetadata.arxivId),
+            pmcid=_optional(rawData.rawMetadata.pmcid),
             year=_optional(rawData.rawMetadata.year)
         )
         for data in rawData.data:
