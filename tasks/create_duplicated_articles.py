@@ -34,7 +34,7 @@ class CreateDuplicatedArticles(Task):
             doi=_optional(metadata.doi),
             arxivId=_optional(metadata.arxivId),
             pmcid=_optional(metadata.pmcid),
-            year=int(metadata.year[:4])
+            year=int(metadata.publishTime[:4])
         )
         for data in rawData.data:
             data = json.loads(data)
