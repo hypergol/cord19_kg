@@ -30,11 +30,11 @@ class CreateDuplicatedArticles(Task):
             paperIds=[],
             title=metadata.title,
             authors=[author.strip() for author in metadata.authors.split(';')],
-            journal=rawData.rawMetadata.journal,
+            journal=metadata.journal,
             doi=_optional(metadata.doi),
-            arxivId=_optional(rawData.rawMetadata.arxivId),
-            pmcid=_optional(rawData.rawMetadata.pmcid),
-            year=_optional(rawData.rawMetadata.year)
+            arxivId=_optional(metadata.arxivId),
+            pmcid=_optional(metadata.pmcid),
+            year=int(metadata.year[:4])
         )
         for data in rawData.data:
             data = json.loads(data)
