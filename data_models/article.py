@@ -5,11 +5,13 @@ from hypergol import BaseData
 
 class Article(BaseData):
 
-    def __init__(self, articleId: str, paperId: str, title: str, authors: List[str], DOI: List[str], arXiv: List[str], PMID: List[str], PMCID: List[str], year: List[int]):
+    def __init__(self, articleId: str, cordUid: str, paperIds: List[str], title: str, authors: List[str], journal:str, DOI: List[str], arXiv: List[str], PMID: List[str], PMCID: List[str], year: List[int]):
         self.articleId = articleId
-        self.paperId = paperId
+        self.cordUid = cordUid
+        self.paperIds = paperIds
         self.title = title
         self.authors = authors
+        self.journal = journal
         self.DOI = DOI
         self.arXiv = arXiv
         self.PMID = PMID

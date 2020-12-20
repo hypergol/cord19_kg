@@ -13,3 +13,7 @@ class Paragraph(BaseData):
 
     def get_id(self):
         return (self.articleId, self.paragraphId, )
+
+    # # This is to keep all the paragraph of the same article in the same chunk
+    # def get_hash_id(self):
+    #     return (self.articleId, )

@@ -3,10 +3,12 @@ from hypergol import HypergolProject
 from hypergol import Pipeline
 from tasks.create_raw_metadata import CreateRawMetadata
 from tasks.create_raw_data import CreateRawData
-from tasks.create_articles import CreateArticles
+from tasks.create_duplicated_articles import CreateDuplicatedArticles
+from tasks.create_paragraphs import CreateParagraphs
 from data_models.raw_metadata import RawMetadata
 from data_models.raw_data import RawData
 from data_models.article import Article
+from data_models.paragraph import Paragraph
 
 
 PLURALS = {
@@ -24,7 +26,8 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
 
     rawMetadata = project.datasetFactory.get(dataType=RawMetadata, name='raw_metadata', chunkCount=256)
     rawData = project.datasetFactory.get(dataType=RawData, name='raw_data', chunkCount=256)
-    articles = project.datasetFactory.get(dataType=Article, name='articles', chunkCount=256)
+    duplicatedArticles = project.datasetFactory.get(dataType=Article, name='duplicatedArticles', chunkCount=256)
+    paragraphs = project.datasetFactory.get(dataType=Paragraph, name='paragraphs', chunkCount=256)
     
     createRawMetadata = CreateRawMetadata(
         rawDataLocation=raw_data_location,
@@ -36,14 +39,17 @@ def create_schema(data_directory, raw_data_location, threads=1, force=False):
         rawDataLocation=raw_data_location,
         plurals=PLURALS,
         inputDatasets=[rawMetadata],
-        outputDataset=rawData,
-        debug=True
+        outputDataset=rawData
+    )
+
+    createDuplicatedArticles = CreateDuplicatedArticles(
+        inputDatasets=[rawData],
+        outputDataset=duplicatedArticles
     )
 
     createArticles = CreateArticles(
         inputDatasets=[rawData],
-        outputDataset=Articles,
-        debug=True
+        outputDataset=duplicatedArticles
     )
 
     pipeline = Pipeline(

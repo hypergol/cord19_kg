@@ -52,6 +52,9 @@ python -m hypergol.cli.create_data_model Article articleId:str:id paperId:str ti
 python -m hypergol.cli.create_data_model Paragraph articleId:str:id paragraphId:int:id text:str citations:List[str] --force
 python -m hypergol.cli.create_data_model ArticleText articleId:str:id article:Article "paragraphs:List[Paragraph]" --force
 python -m hypergol.cli.create_data_model Document documentId:int:id "tokens:List[str]" "labels:List[str]" --force
+
+python3 -m hypergol.cli.create_task CreateArticles RawMetadata RawData Article --force
+python3 -m hypergol.cli.create_task CreateParagraphs RawMetadata RawData Paragraph --force
 ```
 
 
