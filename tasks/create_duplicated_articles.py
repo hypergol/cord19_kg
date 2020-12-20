@@ -54,10 +54,9 @@ class CreateDuplicatedArticles(Task):
                     title=bibEntry['title'],
                     authors=[get_name(author) for author in bibEntry['authors']],
                     journal=rawData.rawMetadata.journal,
-                    DOI=get_other_id(bibEntry, 'DOI'),
-                    arXiv=get_other_id(bibEntry, 'arXiv'),
-                    PMID=get_other_id(bibEntry, 'PMID'),
-                    PMCID=get_other_id(bibEntry, 'PMCID'),
+                    doi=get_other_id(bibEntry, 'DOI'),
+                    arxivId=get_other_id(bibEntry, 'arXiv'),
+                    pmcid=get_other_id(bibEntry, 'PMCID'),
                     year=_optional(bibEntry['year'])
                 ))
         self.output.append(mainArticle)
